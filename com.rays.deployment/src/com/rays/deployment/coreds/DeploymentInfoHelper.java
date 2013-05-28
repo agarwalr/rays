@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FilenameFilter;
 import java.util.Vector;
 
+import com.rays.deployment.utils.MessageController;
+
 class NameFilter implements FilenameFilter
 {
 	private Vector<String> srcFileNames = null;
@@ -31,7 +33,7 @@ public class DeploymentInfoHelper
 	public DeploymentInfoHelper(String src, String dest) 
 	{
 		this.dest = dest;
-		setDeploymentStat(src, dest);
+		initDeploymentData(src, dest);
 	}
 
 	public IFileInfo[] getSourceFileInfo()
@@ -49,14 +51,16 @@ public class DeploymentInfoHelper
 		for(IFileInfo fileInfo : srcInfo)
 		{
 			boolean transferStat = fileInfo.getFile().renameTo(new File(this.dest + "\\" + fileInfo.getFileName()));
+			MessageController.pushInfoMessage(0, "Transfering " + fileInfo.getFileName(), "");
 			if(!transferStat)
 			{
-				System.out.println("Err");
+				MessageController.pushInfoMessage(1, "Error while transfering : " + fileInfo.getFileName(), "");
+				System.out.println("Error while Deployment");
 			}
 		}
 	}
 	
-	private void setDeploymentStat(String src, String dest)
+	private void initDeploymentData(String src, String dest)
 	{
 		File file = new File(src);
 		if(file.isDirectory())

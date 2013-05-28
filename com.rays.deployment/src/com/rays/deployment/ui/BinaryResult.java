@@ -6,6 +6,7 @@ import org.eclipse.swt.widgets.Composite;
 
 import com.rays.deployment.coreds.DeploymentInfoHelper;
 import com.rays.deployment.coreds.SrcDestInfo;
+import com.rays.deployment.utils.ServiceController;
 
 public class BinaryResult extends Results 
 {
@@ -34,7 +35,9 @@ public class BinaryResult extends Results
 	@Override
 	protected void deployEvent(PropertyChangeEvent changeEvent)
 	{
+		ServiceController.stopService("Themes");
 		this.deploymentHlpr.deploy();
+		ServiceController.startService("Themes");
 	}
 
 }

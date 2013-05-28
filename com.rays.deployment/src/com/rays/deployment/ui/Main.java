@@ -25,16 +25,16 @@ public class Main {
 		input.getInputComp().setLayoutData(new GridData());
 		
 		
-		Results pluginInfo = ResultsFactory.getResult(ResultType.Plugin , mainComp);
-		pluginInfo.getResultComp().setLayoutData(new GridData());
+		//Results pluginInfo = ResultsFactory.getResult(ResultType.Plugin , mainComp);
+		//pluginInfo.getResultComp().setLayoutData(new GridData());
 		
 		Results binInfo = ResultsFactory.getResult(ResultType.Binary, mainComp);
 		binInfo.getResultComp().setLayoutData(new GridData());
 		
-		input.addPropertyChangeListener ("deploy", pluginInfo);
+		//input.addPropertyChangeListener ("deploy", pluginInfo);
 		input.addPropertyChangeListener("deploy", binInfo);
 		
-		input.addPropertyChangeListener ("read", pluginInfo);
+		//input.addPropertyChangeListener ("read", pluginInfo);
 		input.addPropertyChangeListener("read", binInfo);
 		
 		shell.pack();
